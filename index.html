@@ -33,6 +33,11 @@
             </div>
             <div id="togo">
             </div>
+            <div class="share">
+                <a href="https://twitter.com/cbiggins" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @cbiggins</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+            </div>
         </div>
 
         <a href="https://github.com/cbiggins/beeroclock"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
@@ -88,9 +93,11 @@
 
                 if (hour > 11) {
                     message = 'It is after 12 and its a weekend. Its Already Beer\'O\'Clock!';
+                    message2 = 'YES! Its Beer\'O\'Clock!';
                 }
                 else {
                     message = 'Its a weekend, but not after 12 yet. You only have ' + togo + ' hours to wait.';
+                    message2 = 'Only ' + togo + ' hours until Beer\'O\'Clock!!';
                 }
             }
             else {
@@ -101,13 +108,20 @@
 
                 if (hour > 16) {
                     message = 'It is after 5PM. Its Already Beer\'O\'Clock!';
+                    message2 = 'YES! Its Beer\'O\'Clock!';
                 }
                 else {
                     message = 'Not long to go. You only have ' + togo + ' hours to wait.';
+                    message2 = 'Only ' + togo + ' hours until Beer\'O\'Clock!!';
                 }
             }
 
             $('#togo').text(message);
+
+
+            $('.share').prepend('<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://christianbiggins.com/beeroclock" data-text="' +message2+ '" data-via="cbiggins" data-size="large">Tweet</a>');
+            $.getScript("http://platform.twitter.com/widgets.js");
+
         });
 
         </script>
