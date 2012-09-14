@@ -59,10 +59,17 @@
 
             $(document).ready(function() {
 
-            function roundVal(val){
-                var dec = 2;
+            function roundVal(val, dec){
                 var result = Math.round(val*Math.pow(10,dec))/Math.pow(10,dec);
                 return result;
+            }
+
+            function getMinsToGo(togo) {
+                return roundVal(togo-Math.floor(togo), 2)*60;
+            }
+
+            function getHoursToGo(togo) {
+                return roundVal(togo, 0);
             }
 
             var d = new Date();
@@ -88,37 +95,39 @@
             if (!weekday) {
 
                 targetDate.setHours(12);
-
                 togo = roundVal(parseFloat((targetDate.getTime()-d.getTime())/(one_hour)));
+
+                mins_togo = getMinsToGo(togo);
+                hours_togo = getHoursToGo(togo);
 
                 if (hour > 11) {
                     message = 'It is after 12 and its a weekend. Its Already Beer\'O\'Clock!';
                     message2 = 'YES! Its Beer\'O\'Clock!';
                 }
                 else {
-                    message = 'Its a weekend, but not after 12 yet. You only have ' + togo + ' hours to wait.';
-                    message2 = 'Only ' + togo + ' hours until Beer\'O\'Clock!!';
+                    message = 'Its a weekend, but not after 12 yet. You only have ' +hours_togo+ 'hrs and ' +mins_togo+ 'min to wait.';
+                    message2 = 'Only ' +hours_togo+ 'hrs and ' +mins_togo+ 'min until Beer\'O\'Clock!!';
                 }
             }
             else {
 
                 targetDate.setHours(17);
-
                 togo = roundVal(parseFloat((targetDate.getTime()-d.getTime())/(one_hour)));
+
+                mins_togo = getMinsToGo(togo);
+                hours_togo = getHoursToGo(togo);
 
                 if (hour > 16) {
                     message = 'It is after 5PM. Its Already Beer\'O\'Clock!';
                     message2 = 'YES! Its Beer\'O\'Clock!';
                 }
                 else {
-                    message = 'Not long to go. You only have ' + togo + ' hours to wait.';
-                    message2 = 'Only ' + togo + ' hours until Beer\'O\'Clock!!';
+                    message = 'Not long to go. You only have ' +hours_togo+ 'hrs and ' +mins_togo+ 'min to wait.';
+                    message2 = 'Only ' +hours_togo+ 'hrs and ' +mins_togo+ 'min until Beer\'O\'Clock!!';
                 }
             }
 
             $('#togo').text(message);
-
-
             $('.share').prepend('<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://christianbiggins.com/beeroclock" data-text="' +message2+ '" data-via="cbiggins" data-size="large">Tweet</a>');
             $.getScript("http://platform.twitter.com/widgets.js");
 
