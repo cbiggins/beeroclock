@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+        <script src="js/vendor/modernizr-2.6.1.min.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+        <![endif]-->
+
+        <!-- Add your site or application content here -->
+
+        <div class="content">
+            <div class="rules">
+                <p>The rules are simple.</p>
+                <ul>
+                    <li>If its a weekday, Beer'o'clock is after 5pm.</li>
+                    <li>If its a weekend, Beer'o'clock is after 12pm.</li>
+                </ul>
+            </div>
+            <div id="togo">
+            </div>
+        </div>
+
+        <a href="https://github.com/you"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.0.min.js"><\/script>')</script>
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+            var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+            g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+            s.parentNode.insertBefore(g,s)}(document,'script'));
+        </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+            function roundVal(val){
+                var dec = 2;
+                var result = Math.round(val*Math.pow(10,dec))/Math.pow(10,dec);
+                return result;
+            }
+
+            var d = new Date();
+            var day = d.getDay();
+            var hour = d.getHours();
+
+            var one_hour = 1000*60*60
+
+            var weekday = false;
+            // Is it a weekday?
+            if (day > 0 && day < 6) {
+                weekday = true;
+            }
+
+            var message = '';
+
+            // Clone Date and set some defaults.
+            var targetDate = new Date(d);
+            targetDate.setMinutes(00);
+            targetDate.setSeconds(00);
+
+            // If its a weekend, check its after 12.
+            if (!weekday) {
+
+                targetDate.setHours(12);
+
+                togo = roundVal(parseFloat((targetDate.getTime()-d.getTime())/(one_hour)));
+
+                if (hour > 11) {
+                    message = 'It is after 12 and its a weekend. Its Already Beer\'O\'Clock!';
+                }
+                else {
+                    message = 'Its a weekend, but not after 12 yet. You only have ' + togo + ' hours to wait.';
+                }
+            }
+            else {
+
+                targetDate.setHours(17);
+
+                togo = roundVal(parseFloat((targetDate.getTime()-d.getTime())/(one_hour)));
+
+                if (hour > 16) {
+                    message = 'It is after 5PM. Its Already Beer\'O\'Clock!';
+                }
+                else {
+                    message = 'Not long to go. You only have ' + togo + ' hours to wait.';
+                }
+            }
+
+            $('#togo').text(message);
+        });
+
+        </script>
+    </body>
+</html>
