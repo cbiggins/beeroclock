@@ -97,10 +97,21 @@ textarea {
 
 
 
+.content {
+    margin:0 auto;
+}
 
 
+.rules {
+    width: 400px;
+    text-align: left;
+    margin: auto;
+}
 
-
+#togo {
+    margin: auto;
+    width: 400px;
+}
 
 
 
