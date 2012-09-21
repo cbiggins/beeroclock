@@ -34,13 +34,9 @@
             <div id="togo">
             </div>
             <div class="share">
-                <a href="https://twitter.com/cbiggins" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @cbiggins</a>
-                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
             </div>
         </div>
-
-        <a href="https://github.com/cbiggins/beeroclock"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.0.min.js"><\/script>')</script>
@@ -76,96 +72,108 @@
                 return Math.floor(togo*Math.pow(10,0))/Math.pow(10,0);
             }
 
-            var d = new Date();
+            function updateTime() {
 
-            var day = d.getDay();
-            var hour = d.getHours();
+                var d = new Date();
 
-            var one_hour = 1000*60*60
+                var day = d.getDay();
+                var hour = d.getHours();
 
-            var weekday = false;
-            // Is it a weekday?
-            if (day > 0 && day < 6) {
-                weekday = true;
-            }
+                var one_hour = 1000*60*60
 
-            var message = '';
+                var weekday = false;
+                // Is it a weekday?
+                if (day > 0 && day < 6) {
+                    weekday = true;
+                }
 
-            // Clone Date and set some defaults.
-            var targetDate = new Date(d);
+                var message = '';
 
-            targetDate.setMinutes(00);
-            targetDate.setSeconds(00);
+                // Clone Date and set some defaults.
+                var targetDate = new Date(d);
 
-            // If its a weekend, check its after 12.
-            if (!weekday) {
+                targetDate.setMinutes(00);
+                targetDate.setSeconds(00);
 
-                targetDate.setHours(12);
+                // If its a weekend, check its after 12.
+                if (!weekday) {
 
-                togo = roundVal(parseFloat((targetDate.getTime()-d.getTime())/(one_hour)), 2);
+                    targetDate.setHours(12);
 
-                mins_togo = getMinsToGo(togo);
-                hours_togo = getHoursToGo(togo);
+                    togo = roundVal(parseFloat((targetDate.getTime()-d.getTime())/(one_hour)), 2);
 
-                hours_msg = '';
-                if (hours_togo) {
-                    hours_msg = hours_togo + ' hrs ';
+                    mins_togo = getMinsToGo(togo);
+                    hours_togo = getHoursToGo(togo);
+
+                    hours_msg = '';
+                    if (hours_togo) {
+                        hours_msg = hours_togo + ' hrs ';
+                        if (mins_togo) {
+                            hours_msg += 'and ';
+                        }
+                    }
+
+                    mins_msg = '';
                     if (mins_togo) {
-                        hours_msg += 'and ';
+                        mins_msg = mins_togo + 'mins';
+                    }
+
+                    if (hour > 11) {
+                        message = 'It is after 12 and its a weekend. Its Already Beer\ O\'Clock!';
+                        message2 = 'YES! Its Beer\ O\'Clock!';
+                    }
+                    else {
+                        message = 'Its a weekend, but not after 12 yet. You only have ' + hours_msg + mins_msg + ' to wait.';
+                        message2 = 'Only ' + hours_msg + mins_msg + ' until Beer\ O\'Clock!!';
+                    }
+                }
+                else {
+
+                    targetDate.setHours(17);
+                    togo = roundVal(parseFloat((targetDate.getTime()-d.getTime())/(one_hour)), 2);
+
+                    mins_togo = getMinsToGo(togo);
+                    hours_togo = getHoursToGo(togo);
+
+                    hours_msg = '';
+                    if (hours_togo) {
+                        hours_msg = hours_togo + ' hrs ';
+                        if (mins_togo) {
+                            hours_msg += 'and ';
+                        }
+                    }
+
+                    mins_msg = '';
+                    if (mins_togo) {
+                        mins_msg = mins_togo + 'mins';
+                    }
+
+                    if (hour > 16) {
+                        message = 'It is after 5PM. Its Already Beer\ O\'Clock!';
+                        message2 = 'YES! Its Beer\ O\'Clock!';
+                    }
+                    else {
+                        message = 'Not long to go. You only have ' + hours_msg + mins_msg + ' to wait.';
+                        message2 = 'Only ' + hours_msg + mins_msg + ' until Beer\ O\'Clock!!';
                     }
                 }
 
-                mins_msg = '';
-                if (mins_togo) {
-                    mins_msg = mins_togo + 'mins';
-                }
+                $('#togo').text();
+                $('#togo').text(message);
 
-                if (hour > 11) {
-                    message = 'It is after 12 and its a weekend. Its Already Beer\ O\'Clock!';
-                    message2 = 'YES! Its Beer\ O\'Clock!';
-                }
-                else {
-                    message = 'Its a weekend, but not after 12 yet. You only have ' + hours_msg + mins_msg + ' to wait.';
-                    message2 = 'Only ' + hours_msg + mins_msg + ' until Beer\ O\'Clock!!';
-                }
-            }
-            else {
+                $('.share').empty();
+                $('.share').prepend('<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://christianbiggins.com/beeroclock" data-text="' +message2+ '" data-via="cbiggins" data-size="large">Tweet</a>');
+                $.getScript("http://platform.twitter.com/widgets.js");
 
-                targetDate.setHours(17);
-                togo = roundVal(parseFloat((targetDate.getTime()-d.getTime())/(one_hour)), 2);
+                $('.share').append('<a href="https://twitter.com/cbiggins" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @cbiggins</a>');
 
-                mins_togo = getMinsToGo(togo);
-                hours_togo = getHoursToGo(togo);
-
-                hours_msg = '';
-                if (hours_togo) {
-                    hours_msg = hours_togo + ' hrs ';
-                    if (mins_togo) {
-                        hours_msg += 'and ';
-                    }
-                }
-
-                mins_msg = '';
-                if (mins_togo) {
-                    mins_msg = mins_togo + 'mins';
-                }
-
-                if (hour > 16) {
-                    message = 'It is after 5PM. Its Already Beer\ O\'Clock!';
-                    message2 = 'YES! Its Beer\ O\'Clock!';
-                }
-                else {
-                    message = 'Not long to go. You only have ' + hours_msg + mins_msg + ' to wait.';
-                    message2 = 'Only ' + hours_msg + mins_msg + ' until Beer\ O\'Clock!!';
-                }
+                window.setInterval(updateTime, 60000);
             }
 
-            $('#togo').text(message);
-            $('.share').prepend('<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://christianbiggins.com/beeroclock" data-text="' +message2+ '" data-via="cbiggins" data-size="large">Tweet</a>');
-            $.getScript("http://platform.twitter.com/widgets.js");
-
+            updateTime();
         });
 
         </script>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
     </body>
 </html>
