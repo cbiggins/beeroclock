@@ -126,6 +126,10 @@ textarea {
     font-size: 40px;
 }
 
+.title, .share, #togo, .rules {
+    padding-left: 10px;
+    padding-right: 10px;
+}
 
 /* ==========================================================================
    Helper classes
