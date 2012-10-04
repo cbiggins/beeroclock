@@ -176,7 +176,7 @@
                 // Lets find out where it IS beer oclock
                 if (!beeroclock) {
                     $.ajax({
-                        url: "/beeroclock.php"
+                        url: "beeroclock.php"
                     }).done(function ( data ) {
                         boc = $.parseJSON(data);
                         boc_html = "<span class='fret'>Don't fret! It <em>is</em> Beer O'clock in the following locations!</span><ul>";
