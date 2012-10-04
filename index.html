@@ -39,8 +39,9 @@
             </div>
             <div id="togo">
             </div>
+            <div id="beeroclock">
+            </div>
             <div class="share">
-
             </div>
         </div>
 
@@ -105,6 +106,8 @@
                 targetDate.setMinutes(00);
                 targetDate.setSeconds(00);
 
+                var beeroclock = false;
+
                 // If its a weekend, check its after 12.
                 if (!weekday) {
 
@@ -131,6 +134,7 @@
                     if (hour > 11) {
                         message = 'It is after 12 and its a weekend. Its Already Beer\ O\'Clock!';
                         message2 = 'YES! Its Beer\ O\'Clock!';
+                        beeroclock = true;
                     }
                     else {
                         message = 'Its a weekend, but not after 12 yet. You only have ' + hours_msg + mins_msg + ' to wait.';
@@ -161,15 +165,34 @@
                     if (hour > 16) {
                         message = 'It is after 5PM. Its Already Beer\ O\'Clock!';
                         message2 = 'YES! Its Beer\ O\'Clock!';
+                        beeroclock = true;
                     }
                     else {
-                        message = 'Not long to go. You only have ' + hours_msg + mins_msg + ' to wait.';
+                        message = 'Not long to go. <strong>You only have ' + hours_msg + mins_msg + ' to wait.</strong>';
                         message2 = 'Only ' + hours_msg + mins_msg + ' until Beer\ O\'Clock!!';
                     }
                 }
 
-                $('#togo').text();
-                $('#togo').text(message);
+                // Lets find out where it IS beer oclock
+                if (!beeroclock) {
+                    $.ajax({
+                        url: "/beeroclock.php"
+                    }).done(function ( data ) {
+                        boc = $.parseJSON(data);
+                        boc_html = "<span class='fret'>Don't fret! It <em>is</em> Beer O'clock in the following locations!</span><ul>";
+                        console.log(boc);
+                        for (i in boc) {
+                            boc_html += '<li>' + boc[i].name + ' - ' + boc[i].time + '</li>';
+                        }
+                        boc_html += '</ul>';
+
+                        $('#beeroclock').html();
+                        $('#beeroclock').html(boc_html);
+                    });
+                }
+
+                $('#togo').html();
+                $('#togo').html(message);
 
                 $('.share').empty();
                 $('.share').prepend('<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://christianbiggins.com/beeroclock" data-text="' +message2+ '" data-via="cbiggins" data-size="large">Tweet</a>');

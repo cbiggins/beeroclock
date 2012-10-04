@@ -110,6 +110,13 @@ textarea {
     font-family: 'Orienta';
 }
 
+#beeroclock {
+    padding-top:20px;
+    margin: auto;
+    width: 400px;
+    font-family: 'Orienta';
+}
+
 .share {
     padding-top: 20px;
     width: 400px;
@@ -239,7 +246,7 @@ textarea {
    ========================================================================== */
 
 @media only screen and (max-width: 35em) {
-    .title, .rules, #togo, .share {
+    .title, .rules, #togo, .share, #beeroclock {
         width: 320px;
     }
 }
