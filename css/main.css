@@ -108,6 +108,7 @@ textarea {
     margin: auto;
     width: 400px;
     font-family: 'Orienta';
+    padding-top: 20px;
 }
 
 #beeroclock {
@@ -326,4 +327,54 @@ textarea {
     h3 {
         page-break-after: avoid;
     }
+}
+
+.button {
+   padding-top: 20px;
+   padding-bottom: 20px;
+   padding-left: 100px;
+
+   -webkit-border-radius: 16px;
+   -moz-border-radius: 16px;
+   border-radius: 16px;
+
+   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   box-shadow: rgba(0,0,0,1) 0 1px 0;
+   text-shadow: rgba(0,0,0,.4) 0 1px 0;
+
+   color: #ffffff;
+   font-size: 24px;
+   font-family: 'Orienta';
+
+   margin-top: 20px;
+   vertical-align: middle;
+}
+
+.yesbutton {
+   width: 200px;
+   display: block;
+   border-top: 1px solid #b5e096;
+   background: #50d404;
+   background: -webkit-gradient(linear, left top, left bottom, from(#2bf50c), to(#50d404));
+   background: -webkit-linear-gradient(top, #2bf50c, #50d404);
+   background: -moz-linear-gradient(top, #2bf50c, #50d404);
+   background: -ms-linear-gradient(top, #2bf50c, #50d404);
+   background: -o-linear-gradient(top, #2bf50c, #50d404);
+}
+
+.nobutton {
+   width: 200px;
+   display: block;
+   border-top: 1px solid #e36b6b;
+   background: #d60416;
+   background: -webkit-gradient(linear, left top, left bottom, from(#f70a0a), to(#d60416));
+   background: -webkit-linear-gradient(top, #f70a0a, #d60416);
+   background: -moz-linear-gradient(top, #f70a0a, #d60416);
+   background: -ms-linear-gradient(top, #f70a0a, #d60416);
+   background: -o-linear-gradient(top, #f70a0a, #d60416);
+}
+
+#togo p {
+    padding-top: 20px;
 }
