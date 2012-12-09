@@ -133,12 +133,12 @@
                     }
 
                     if (hour > 11) {
-                        message = 'It is after 12 and its a weekend. Its Already Beer\ O\'Clock!';
+                        message = '<span class="button yesbutton">Yes it is!</span>';
                         message2 = 'YES! Its Beer\ O\'Clock!';
                         beeroclock = true;
                     }
                     else {
-                        message = 'Its a weekend, but not after 12 yet. You only have ' + hours_msg + mins_msg + ' to wait.';
+                        message = '<span class="button nobutton">Not Yet!</span><p><strong>You only have ' + hours_msg + mins_msg + ' to wait.</strong></p>';
                         message2 = 'Only ' + hours_msg + mins_msg + ' until Beer\ O\'Clock!!';
                     }
                 }
