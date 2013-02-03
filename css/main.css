@@ -95,6 +95,7 @@ textarea {
 
 .content {
     margin:0 auto;
+
 }
 
 .rules {
@@ -333,6 +334,8 @@ textarea {
    padding-top: 20px;
    padding-bottom: 20px;
    padding-left: 100px;
+
+   margin-left: 25px;
 
    -webkit-border-radius: 16px;
    -moz-border-radius: 16px;
