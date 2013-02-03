@@ -125,8 +125,10 @@ $(document).ready(function() {
     $('#togo').html();
     $('#togo').html(message);
 
-    $('.share_wrapper.twitter').empty();
+    $('.share_wrapper .twitter').empty();
     $('.share_wrapper .twitter').prepend('<a href="https://twitter.com/share" class="twitter-share-button" data-count="none" data-url="http://beeroclock.info" data-text="' + message2 + '" data-via="cbiggins" data-hashtags="beeroclock" data-size="small">Tweet</a>');
+    $('.share_wrapper .twitter').append('<a href="https://twitter.com/cbiggins" class="twitter-follow-button" data-show-count="false" data-size="small">Follow @cbiggins</a>');
+
     $.getScript("http://platform.twitter.com/widgets.js");
 
     window.setInterval(updateTime, 60000);
