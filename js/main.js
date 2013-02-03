@@ -125,11 +125,9 @@ $(document).ready(function() {
     $('#togo').html();
     $('#togo').html(message);
 
-    $('.share').empty();
-    $('.share').prepend('<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://beeroclock.info" data-text="' + message2 + '" data-via="cbiggins" data-size="large">Tweet</a>');
+    $('.share_wrapper.twitter').empty();
+    $('.share_wrapper .twitter').prepend('<a href="https://twitter.com/share" class="twitter-share-button" data-count="none" data-url="http://beeroclock.info" data-text="' + message2 + '" data-via="cbiggins" data-hashtags="beeroclock" data-size="small">Tweet</a>');
     $.getScript("http://platform.twitter.com/widgets.js");
-
-    $('.share').append('<a href="https://twitter.com/cbiggins" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @cbiggins</a>');
 
     window.setInterval(updateTime, 60000);
   }

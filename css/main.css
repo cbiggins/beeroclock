@@ -120,10 +120,36 @@ textarea {
 }
 
 .share {
-    padding-top: 20px;
     width: 400px;
     text-align: left;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.share_wrapper {
+  margin-left: 28px;
+  margin-right: auto;
+}
+
+.share .share_wrapper .twitter {
+  width: 180px;
+}
+.share .share_wrapper .gplus {
+  width: 30px;
+}
+.share .share_wrapper .facebook {
+  height: 26px;
+  overflow: hidden;
+  width: 55px;
+  vertical-align: text-bottom;
+}
+
+.share .share_wrapper .twitter,
+.share .share_wrapper .gplus,
+.share .share_wrapper .facebook {
+  height: 25px;
+  display: inline-block;
+  margin-right: 10px;
 }
 
 .title {
